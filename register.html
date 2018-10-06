@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title>Welcome!</title>
+    <meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		.hindent {
+			text-indent: 30px;
+		}
+		.red {
+			background-color: red;
+		}
+		.green {
+			background-color: green;
+		}
+		.large {
+			font-size: 18px;
+		}
+		#signupblock {
+			display: none;
+		}
+		.hbg {
+			background-color: #337ab7;
+			color: #ffffff;
+		}
+		.fbg {
+			background-color: black;
+			color: #ffffff;
+			opacity: 0.9;
+		}
+	</style>
+  </head>
+  
+  <body>
+	<div class="container-fluid hbg">
+		<h1 class="display-1 hindent">Online Classroom</h1>
+	</div>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+				<a class="navbar-brand" href="#">StayConnected</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li class="dropdown"><a href="#">Link1</a></li>
+					<li><a href="#">Link2</a></li>
+					<li><a href="#">Link3</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-6">
+		<div class="panel panel-info">
+			<div class="panel-heading"><h2 class="display-2">Create Join Connect</h2></div>
+			<div class="panel-body"><h3 class="display-3">Create and Manage Groups.</h3></div>
+			<div class="panel-body"><h3 class="display-3">Join to Stay Updated.</h3></div>
+			<div class="panel-body"><h3 class="display-3">Connect to People.</h3></div>
+		</div>
+		</div>
+		<div class="col-sm-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading"><h2 class="display-2">Sign-In or Sign-Up</h2></div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs">
+					<li id="s1" class="active medium"><a href="#">Sign-In</a></li>
+					<li id="s2" class="medium"><a href="#">Sign-Up</a></li>
+				</ul>
+			</div>
+			<div id = "loginblock"class="container-fluid">
+			<div class="panel-body input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+				<input class="form-control input-md" type="text" placeholder="Username or Email-Id" />
+			</div>
+			<div class="panel-body input-group">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input class="form-control input-md" type="password" placeholder="Password" />
+			</div>
+			<div class="panel-body checkbox">
+				<label><input value="" type="checkbox" checked/>Keep me signed-in</label>
+			</div>
+			<div class="panel-body">
+				<input class="btn btn-primary btn-md col-sm-5" type="submit" value="Login" />
+			</div>
+			</div>
+			<!-- for register info -->
+			<div id="signupblock" class="container-fluid">
+			<div class="panel-body">
+				<input class="form-control input-md" type="text" placeholder="Full Name" />
+			</div>
+			<div class="panel-body">
+				<input class="form-control input-md" type="text" placeholder="Email" />
+			</div>
+			<div class="panel-body">
+				<input class="form-control input-md" type="password" placeholder="Password" />
+			</div>
+			<div class="panel-body">
+				<label>Date Of Birth</label>
+				<input class="form-control input-md" type="date" />
+			</div>
+			<div class="panel-body">
+				<label class="radio-inline"><input type="radio" />Male</label>
+				<label class="radio-inline"><input type="radio" />Female</label>
+			</div>
+			<div class="panel-body">
+				<input class="btn btn-primary btn-md col-sm-5" type="submit" value="Register" />
+			</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+	<div class="container-fluid fbg">
+		<p>Footer</p>
+		<h3 class="display-3">Developed By So and So...</h3>
+	</div>
+	<script type="text/javascript">
+		loginblock = document.getElementById("loginblock");
+		signupblock = document.getElementById("signupblock");
+		t1 = document.getElementById("s1");
+		t2 = document.getElementById("s2");
+		
+		signupblock.style.display = "none";
+		
+		t1.onclick = function () {
+			if (loginblock.style.display == "none") {
+				loginblock.style.display = "block";
+				signupblock.style.display = "none";
+				t2.classList.remove("active");
+				t1.classList.add("active")
+			}
+			else
+			{
+				console.log("error");
+			}
+		}
+		
+		t2.onclick = function () {
+			if (signupblock.style.display == "none") {
+				signupblock.style.display = "block";
+				loginblock.style.display = "none";
+				t1.classList.remove("active");
+				t2.classList.add("active");
+			}
+			else
+			{
+				console.log("error");
+			}
+		}
+	</script>
+  </body>
+</html>
