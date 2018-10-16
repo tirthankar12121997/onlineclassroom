@@ -86,40 +86,40 @@
 			<div id = "loginblock"class="container-fluid">
 			<div class="panel-body input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input class="form-control input-md" type="text" placeholder="Username or Email-Id" />
+				<input id="username" class="form-control input-md" type="text" placeholder="Username or Email-Id" />
 			</div>
 			<div class="panel-body input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input class="form-control input-md" type="password" placeholder="Password" />
+				<input id="pass" class="form-control input-md" type="password" placeholder="Password" />
 			</div>
 			<div class="panel-body checkbox">
-				<label><input value="" type="checkbox" checked/>Keep me signed-in</label>
+				<label><input id="signed" value="" type="checkbox" checked/>Keep me signed-in</label>
 			</div>
 			<div class="panel-body">
-				<input class="btn btn-primary btn-md col-sm-5" type="submit" value="Login" />
+				<input id="login" class="btn btn-primary btn-md col-sm-5" type="submit" value="Login" />
 			</div>
 			</div>
 			<!-- for register info -->
 			<div id="signupblock" class="container-fluid">
 			<div class="panel-body">
-				<input class="form-control input-md" type="text" placeholder="Full Name" />
+				<input id="fullname" class="form-control input-md" type="text" placeholder="Full Name" />
 			</div>
 			<div class="panel-body">
-				<input class="form-control input-md" type="text" placeholder="Email" />
+				<input id="email" class="form-control input-md" type="text" placeholder="Email" />
 			</div>
 			<div class="panel-body">
-				<input class="form-control input-md" type="password" placeholder="Password" />
+				<input id="password" class="form-control input-md" type="password" placeholder="Password" />
 			</div>
 			<div class="panel-body">
 				<label>Date Of Birth</label>
-				<input class="form-control input-md" type="date" />
+				<input id="dob" class="form-control input-md" type="date" />
 			</div>
 			<div class="panel-body">
-				<label class="radio-inline"><input type="radio" name="gender" />Male</label>
-				<label class="radio-inline"><input type="radio" name="gender" />Female</label>
+				<label class="radio-inline"><input id="male" type="radio" name="gender" />Male</label>
+				<label class="radio-inline"><input id="female" type="radio" name="gender" />Female</label>
 			</div>
 			<div class="panel-body">
-				<input class="btn btn-primary btn-md col-sm-5" type="submit" value="Register" />
+				<input id="register" class="btn btn-primary btn-md col-sm-5" type="submit" value="Register" />
 			</div>
 			</div>
 		</div>
@@ -131,11 +131,22 @@
 		<h3 class="display-3">Developed By So and So...</h3>
 	</div>
 	<script type="text/javascript">
+		//interface
 		loginblock = document.getElementById("loginblock");
 		signupblock = document.getElementById("signupblock");
 		t1 = document.getElementById("s1");
 		t2 = document.getElementById("s2");
+		//register
+		fullname = document.getElementById("fullname");
+		email = document.getElementById("email");
+		password = document.getElementById("password");
+		dob = document.getElementById("dob");
+		male = document.getElementById("male");
+		female = document.getElementById("female");
+		register = document.getElementById("register");
+		//login
 		
+		//initialize
 		signupblock.style.display = "none";
 		
 		t1.onclick = function () {
@@ -162,6 +173,33 @@
 			{
 				console.log("error");
 			}
+		}
+		
+		register.onclick = function () {
+			//boolean x = validate();
+			gender = "validating";
+			if (true) {
+				var hr = new XMLHttpRequest();
+				hr.onreadystatechange = function () {
+					if (hr.readyState == XMLHttpRequest.DONE) {
+						if (hr.status == 200) {
+							alert(hr.responseText);
+						}
+						else if (hr.status == 404) {
+							alert("not found");
+						}
+					}
+				}
+				hr.open("POST", "php/register.php", true);
+				hr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				hr.send("fullname=" + fullname.value + "&email=" + email.value + "&password=" + password.value + "&dob=" + dob.value 
+				+ "&gender=" + gender);
+			} else {
+			
+			}
+		}
+		function validate() {
+			
 		}
 	</script>
   </body>
