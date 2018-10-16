@@ -20,8 +20,14 @@
 		$stmt2->bind_param("sssssi", $email, $hashed, $fullname, $dob, $gender, $verified);
 		$stmt2->execute();
 		$result = $stmt2->get_result();
-
-		echo "User created successfully!";
+		$m = mail($email, 'Verification Mail for joining Classroom', 'This is a verification mail.
+Click on the link below to verify your mail-id 
+http://localhost:8080/rdbms/rdbmsproject/onlineclassroom/php/verify.php?email='.$email.'&hash='.$hashed,
+"From: tirthankar.nayak@gmail.com");
+		if ($m)
+			echo "User created successfully!\nA verification link is sent to your email-id";
+		else
+			echo "error sending mail";
 	}
 	else
 	{
