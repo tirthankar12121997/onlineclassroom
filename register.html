@@ -145,7 +145,10 @@
 		female = document.getElementById("female");
 		register = document.getElementById("register");
 		//login
-		
+		username = document.getElementById("username");
+		pass = document.getElementById("pass");
+		signed = document.getElementById("signed");
+		login = document.getElementById("login");
 		//initialize
 		signupblock.style.display = "none";
 		
@@ -198,6 +201,29 @@
 			
 			}
 		}
+		
+		login.onclick = function () {
+			//boolean x = validate2();
+			if (true) {
+				var hr = new XMLHttpRequest();
+				hr.onreadystatechange = function () {
+					if (hr.readyState == XMLHttpRequest.DONE) {
+						if (hr.status == 200) {
+							alert(hr.responseText);
+						}
+						else if (hr.status == 404) {
+							alert("not found");
+						}
+					}
+				}
+				hr.open("POST", "php/login.php", true);
+				hr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				hr.send("username=" + username.value + "&password=" + pass.value);
+			} else {
+				
+			}
+		}
+		
 		function validate() {
 			
 		}
