@@ -1,3 +1,25 @@
+<?php
+	if (isset($_COOKIE["userid"]))
+	{
+		include 'php/dbconnect.php';
+		$hashid = $_COOKIE["userid"];
+		$stmt = $con->prepare("select count(*) as num from users where hashid = ?");
+		$stmt->bind_param("s", $hashid);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$r = $result->fetch_assoc();
+		if ($r["num"] != 1) {
+			header("Location: http://localhost:8080/rdbms/rdbmsproject/onlineclassroom/register.html");
+			exit();
+		}
+	}
+	else
+	{
+		header("Location: http://localhost:8080/rdbms/rdbmsproject/onlineclassroom/register.html");
+		exit();
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,7 +73,7 @@
 					<li class="active"><a href="#">Home</a></li>
 					<li class="dropdown"><a href="#">Join Group</a></li>
 					<li><a href="#">Create Group</a></li>
-					<li><a href="#"><i class="glyphicon glyphicon-user"></i> Logout</a></li>
+					<li id="logoutb"><a href="#"><i class="glyphicon glyphicon-user"></i> Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -109,5 +131,24 @@
 	
 	
   </body>
-</html>
+  <script>
+	logout = document.getElementById("logoutb");
+	logout.onclick = function () {
+		var hr = new XMLHttpRequest();
+		hr.onreadystatechange = function () {
+			if (hr.readyState == XMLHttpRequest.DONE) {
+				if (hr.status == 200) {
+					window.location = "http://localhost:8080/rdbms/rdbmsproject/onlineclassroom/register.html";
+				}
+				else if (hr.status == 404) {
+					alert("not found");
+				}
+			}
+		}
+		hr.open("GET", "php/logout.php", true);
+		//hr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		hr.send(null);
+	}
   
+  </script>
+</html>

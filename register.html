@@ -106,7 +106,7 @@
 				<label><input id="signed" value="" type="checkbox" checked/>Keep me signed-in</label>
 			</div>
 			<div class="panel-body">
-				<input id="login" class="btn btn-primary btn-md col-sm-5" type="submit" value="Login" />
+				<button id="login" class="btn btn-primary btn-md col-sm-5" >Login <i class="glyphicon glyphicon-log-in"></i></button>
 			</div>
 			</div>
 			<!-- for register info -->
@@ -220,6 +220,7 @@
 					if (hr.readyState == XMLHttpRequest.DONE) {
 						if (hr.status == 200) {
 							alert(hr.responseText);
+							window.location = "http://localhost:8080/rdbms/rdbmsproject/onlineclassroom/home.php"; 
 						}
 						else if (hr.status == 404) {
 							alert("not found");
