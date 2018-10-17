@@ -13,6 +13,9 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<style>
+		body {
+			background-color: black;
+		}
 		.hindent {
 			text-indent: 30px;
 		}
@@ -29,13 +32,20 @@
 			display: none;
 		}
 		.hbg {
-			background-color: #337ab7;
+			background-color: #262626;
 			color: #ffffff;
 		}
 		.fbg {
 			background-color: black;
 			color: #ffffff;
 			opacity: 0.9;
+		}
+		.ph {
+			background-color: #262626;
+			color: #ffffff;
+		}
+		.panel {
+			border: 0 none;
 		}
 	</style>
   </head>
@@ -56,7 +66,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li class="active"><a href="#">Sign-In/Sign-Up</a></li>
 					<li class="dropdown"><a href="#">Link1</a></li>
 					<li><a href="#">Link2</a></li>
 					<li><a href="#">Link3</a></li>
@@ -67,16 +77,16 @@
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-6">
-		<div class="panel panel-info">
-			<div class="panel-heading"><h2 class="display-2">Create Join Connect</h2></div>
+		<div class="panel">
+			<div class="ph panel-heading"><h2 class="display-2">Create Join Connect</h2></div>
 			<div class="panel-body"><h3 class="display-3">Create and Manage Groups.</h3></div>
 			<div class="panel-body"><h3 class="display-3">Join to Stay Updated.</h3></div>
 			<div class="panel-body"><h3 class="display-3">Connect to People.</h3></div>
 		</div>
 		</div>
 		<div class="col-sm-6">
-		<div class="panel panel-primary">
-			<div class="panel-heading"><h2 class="display-2">Sign-In or Sign-Up</h2></div>
+		<div class="panel">
+			<div class="ph panel-heading"><h2 class="display-2">Sign-In or Sign-Up</h2></div>
 			<div class="panel-body">
 				<ul class="nav nav-tabs">
 					<li id="s1" class="active medium"><a href="#">Sign-In</a></li>
