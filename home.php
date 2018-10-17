@@ -36,9 +36,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <style>
-	body {
-		color: #ffffff;
-	}
 	.hbg {
 		background-color: #262626;
 		color: #ffffff;
@@ -52,6 +49,9 @@
 	}
 	.po:hover {
 		box-shadow: 3px 5px 10px #888888;
+	}
+	#home {
+		display: none;
 	}
   </style>
   <body>
@@ -73,13 +73,14 @@
 					<li class="active"><a href="#">Home</a></li>
 					<li class="dropdown"><a href="#">Join Group</a></li>
 					<li><a href="#">Create Group</a></li>
-					<li id="logoutb"><a href="#"><i class="glyphicon glyphicon-user"></i> Logout</a></li>
+					<li id="logoutb"><a href="#"><i class="glyphicon glyphicon-user"></i> Profile</a></li>
+					<li id="logoutb"><a href="#"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<!-- home section -->
-	<div class="container-fluid">
+	<div id="home" class="container-fluid">
 	<div class="row">
 		<div class="col-sm-3">
 		<div class="panel po">
@@ -130,8 +131,48 @@
 	<!-- create group section -->
 	
 	
-  </body>
-  <script>
+	<!-- profile section -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="panel">
+					<div class="panel-body">
+						IMAGE
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="panel">
+					<div class="panel-heading">
+					<h3 class="display-2">PROFILE DETAILS</h3>
+					</div>
+					<div class="panel-body">
+						NAME : 
+					</div>
+					<div class="panel-body">
+						EMAIL : 
+					</div>
+					<div class="panel-body">
+						PROFESSION : 
+					</div>
+					<div class="panel-body">
+						DATE OF BIRTH(AGE) : 
+					</div>
+					<div class="panel-body">
+						GENDER : 
+					</div>
+					<div class="panel-body">
+						MEMBER : 
+					</div>
+					<div class="panel-body">
+						ADMIN : 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
 	logout = document.getElementById("logoutb");
 	logout.onclick = function () {
 		var hr = new XMLHttpRequest();
@@ -151,4 +192,6 @@
 	}
   
   </script>
+  </body>
+  
 </html>
