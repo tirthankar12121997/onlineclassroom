@@ -8,6 +8,7 @@
 	$dob = $_POST["dob"];
 	$gender = $_POST["gender"];
 	$verified = 0;
+	$url = "profile/party.jpg";
 	
 	$stmt = $con->prepare("select count(*) as num from users where email = ?");
 	$stmt->bind_param("s", $email);
@@ -16,8 +17,8 @@
 	$r = $result->fetch_assoc();
 	if ($r['num'] == 0)
 	{
-		$stmt2 = $con->prepare("insert into users(email, password, full_name, dob, gender, verified) values(?, ?, ?, ?, ?, ?)");
-		$stmt2->bind_param("sssssi", $email, $hashed, $fullname, $dob, $gender, $verified);
+		$stmt2 = $con->prepare("insert into users(email, password, full_name, dob, gender, verified, url) values(?, ?, ?, ?, ?, ?, ?)");
+		$stmt2->bind_param("sssssis", $email, $hashed, $fullname, $dob, $gender, $verified, $url);
 		$stmt2->execute();
 		$result = $stmt2->get_result();
 		$m = mail($email, 'Verification Mail for joining Classroom', 'This is a verification mail.

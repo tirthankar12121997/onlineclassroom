@@ -8,7 +8,6 @@
 		$stmt->bind_param("s", $hashid);
 		$stmt->execute();
 
-		setCookie("userid", "", time() - 60, "/");
+		setCookie("userid", $hashid, time() - 60, "/");
 	}
-
 ?>

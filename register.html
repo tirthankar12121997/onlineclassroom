@@ -120,7 +120,7 @@
 				<input id="dob" class="form-control input-md" type="date" />
 			</div>
 			<div class="panel-body">
-				<label class="radio-inline"><input id="male" type="radio" name="gender" />Male</label>
+				<label class="radio-inline"><input id="male" type="radio" name="gender" checked/>Male</label>
 				<label class="radio-inline"><input id="female" type="radio" name="gender" />Female</label>
 			</div>
 			<div class="panel-body">
@@ -185,7 +185,12 @@
 		
 		register.onclick = function () {
 			//boolean x = validate();
-			gender = "validating";
+			var gender = "validating";
+			if (male.checked)
+				gender = "male";
+			else
+				gender = "female";
+				
 			if (true) {
 				var hr = new XMLHttpRequest();
 				hr.onreadystatechange = function () {
