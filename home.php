@@ -172,22 +172,20 @@
 						<label>NAME</label> : <?php
 							echo $name;
 						?>
-						<input type="text" class="form-control editc" placeholder="Enter the Full name"/>
-						<span></span>
+						<input id="editname" type="text" class="form-control editc" placeholder="Enter the Full name to edit"/>
+						<span id="namespan"></span>
 					</div>
 					<div class="panel-body">
 						<label>EMAIL</label> : <?php
 							echo $email;
 						?>
-						<input type="text" class="form-control editc" placeholder="Enter the email-id"/>
-						<span></span>
 					</div>
 					<div class="panel-body">
 						<label>PASSWORD</label> : Click on edit to change password
-						<input type="text" class="form-control editc" placeholder="Old password"/>
+						<input id="editoldpass" type="text" class="form-control editc" placeholder="Old password"/>
 						<br/><br/>
-						<input type="text" class="form-control editc" placeholder="New password"/>
-						<span></span>
+						<input id="editnepass" type="text" class="form-control editc" placeholder="New password"/>
+						<span id="passspan"></span>
 					</div>
 					<div class="panel-body">
 						<label>PROFESSION</label> : 
@@ -196,16 +194,13 @@
 						<label>DATE OF BIRTH(AGE)</label> : <?php
 							echo $dob;
 						?>
-						<input type="date" class="form-control editc" placeholder="Enter your birthday"/>
-						<span></span>
+						<input id="editdob" type="date" class="form-control editc" placeholder="Enter your birthday"/>
+						<span id="dobspan"></span>
 					</div>
 					<div class="panel-body">
 						<label>GENDER</label> : <?php
 							echo $gender;
-						?><br/>
-						<label class="radio-inline editc"><input id="male" type="radio" name="gender" checked/>Male</label>
-						<label class="radio-inline editc"><input id="female" type="radio" name="gender" />Female</label>
-						<span></span>
+						?>
 					</div>
 					<div class="panel-body">
 						<label>MEMBER</label> : 
@@ -228,6 +223,13 @@
 	editb = document.getElementById("editb");
 	editc = document.getElementsByClassName("editc");
 	saveb = document.getElementById("saveb");
+	editname = document.getElementById("editname");
+	editoldpass = document.getElementById("editoldpass");
+	editnepass = document.getElementById("editnepass");
+	editdob = document.getElementById("editdob");
+	//editmale = document.getElementById("editmale");
+	//editfemale = document.getElementById("editfemale");
+	
 	for (var i = 0; i < editc.length; i++)
 		editc[i].style.display = "none";
 	
@@ -314,6 +316,35 @@
 			}
 			this.innerHTML = "<i class='glyphicon glyphicon-edit'></i> Edit";
 		}
+	}
+	
+	saveb.onclick = function () {
+		if (editname.value != "" && editname.value.length < 5)
+			alert("Enter a valid name !");
+		else if (editoldpass.value != "" && editoldpass.value.length < 5)
+			alert("Enter a valid old password");
+		else if (editnepass.value != "" && editnepass.value.length < 5)
+			alert("Enter a valid new password");
+		else if (editnepass.value != editoldpass.value)
+			alert("old password and new password dont match");
+		else
+		{
+			var hr = new XMLHttpRequest();
+			hr.onreadystatechange = function () {
+			if (hr.readyState == XMLHttpRequest.DONE) {
+				if (hr.status == 200) {
+					alert(hr.responseText);
+				}
+				else if (hr.status == 404) {
+					alert("not found");
+				}
+			}
+			}
+			hr.open("POST", "php/editprofile.php", true);
+			hr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			hr.send("fullname=" + editname.value + "&oldpassword=" + editoldpass.value + "&nepassword=" + editnepass.value + "&dob=" + editdob.value);
+		}
+			
 	}
 	
   </script>
