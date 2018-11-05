@@ -169,9 +169,9 @@
 					<h3 class="display-2">PROFILE DETAILS <button id="editb" class="btn btn-success"><i class="glyphicon glyphicon-edit"></i> Edit</button></h3>
 					</div>
 					<div class="panel-body">
-						<label>NAME</label> : <?php
+						<label>NAME</label> : <span id="namefield"><?php
 							echo $name;
-						?>
+						?></span>
 						<input id="editname" type="text" class="form-control editc" placeholder="Enter the Full name to edit"/>
 						<span id="namespan"></span>
 					</div>
@@ -182,18 +182,18 @@
 					</div>
 					<div class="panel-body">
 						<label>PASSWORD</label> : Click on edit to change password
-						<input id="editoldpass" type="text" class="form-control editc" placeholder="Old password"/>
+						<input id="editoldpass" type="password" class="form-control editc" placeholder="Old password"/>
 						<br/><br/>
-						<input id="editnepass" type="text" class="form-control editc" placeholder="New password"/>
+						<input id="editnepass" type="password" class="form-control editc" placeholder="New password"/>
 						<span id="passspan"></span>
 					</div>
 					<div class="panel-body">
 						<label>PROFESSION</label> : 
 					</div>
 					<div class="panel-body">
-						<label>DATE OF BIRTH(AGE)</label> : <?php
+						<label>DATE OF BIRTH(AGE)</label> : <span id="dobfield"><?php
 							echo $dob;
-						?>
+						?></span>
 						<input id="editdob" type="date" class="form-control editc" placeholder="Enter your birthday"/>
 						<span id="dobspan"></span>
 					</div>
@@ -325,15 +325,34 @@
 			alert("Enter a valid old password");
 		else if (editnepass.value != "" && editnepass.value.length < 5)
 			alert("Enter a valid new password");
-		else if (editnepass.value != editoldpass.value)
-			alert("old password and new password dont match");
 		else
 		{
 			var hr = new XMLHttpRequest();
 			hr.onreadystatechange = function () {
 			if (hr.readyState == XMLHttpRequest.DONE) {
 				if (hr.status == 200) {
-					alert(hr.responseText);
+					if (hr.responseText == "2")
+					{
+						editb.click();
+						if (editname.value.length != 0 && editname.value.length >= 5)
+							document.getElementById("namefield").innerHTML = editname.value;
+						if (editdob.value.length != 0)
+							document.getElementById("dobfield").innerHTML = editdob.value;
+						alert("Made the changes");
+					}
+					else if (hr.responseText == "1")
+					{
+						editb.click();
+						if (editname.value.length != 0 && editname.value.length >= 5)
+							document.getElementById("namefield").innerHTML = editname.value;
+						if (editdob.value.length != 0)
+							document.getElementById("dobfield").innerHTML = editdob.value;
+						alert("Made the changes");
+					}
+					else
+					{
+						alert("old password is incorrect");
+					}
 				}
 				else if (hr.status == 404) {
 					alert("not found");

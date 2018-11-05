@@ -17,11 +17,25 @@
 	{
 		$oldpass = $_POST["oldpassword"];
 		$nepass = $_POST["nepassword"];
-		echo $fullname.$dob.$oldpass.$nepass;
+		
+		if (password_verify($oldpass, $r["password"]))
+		{
+			$hash = password_hash($nepass, PASSWORD_DEFAULT);
+			$stmt2 = $con->prepare("update users set full_name = ?, dob = ?, password = ? where id = ?");
+			$stmt2->bind_param("sssi", $fullname, $dob, $hash, $r["id"]);
+			$stmt2->execute();
+			echo 1;
+		}
+		else
+			echo 3; 
+		
 	}
 	else
 	{
-		echo $fullname.$dob;
+		$stmt2 = $con->prepare("update users set full_name = ?, dob = ? where id = ?");
+		$stmt2->bind_param("ssi", $fullname, $dob, $r["id"]);
+		$stmt2->execute();
+		echo 2;
 	}
 	
 	
